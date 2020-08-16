@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Name: #{item.name}
+    p Categories:&nbsp;
+        each val, index in item.categories
+            a(href=val.url) #{val.name}
+            if index < item.categories.length - 1
+                |, 

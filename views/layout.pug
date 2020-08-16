@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title= title
+    link(type='text/css' rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+  body
+    nav.navbar
+      div.nav-logo
+        a(href='/')
+          img(src='/images/logowithtitle.png')
+      div.nav-links
+        input#toggle.checkbox1(type='checkbox')
+        label#hamburger(for="toggle")
+          div.hamburger.hamburger1
+            span.bar.bar1
+            span.bar.bar2
+            span.bar.bar3
+            span.bar.bar4
+        div.menu
+          a(href='/store') Home
+          a(href='/store/items') Items
+          a(href='/store/categories') Categories
+
+
+
+    block content
