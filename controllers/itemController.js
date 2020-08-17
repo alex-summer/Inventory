@@ -18,13 +18,12 @@ exports.index = function(req, res) {
 }
 
 exports.item_list = function(req, res, next) {
-    Item.find({}, 'name description')
+    Item.find({}, 'name')
         .exec(function (err, list_items){
 
             if(err) {return next(err);}
 
-            res.render('item_list', {title: 'Item List', item_list: list_items})
-            console.log(list_items)
+            res.render('item_list', {title: 'Item List', item_list: list_items});
         })
 }
 

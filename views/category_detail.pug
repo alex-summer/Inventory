@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1 Name: #{category.name}
+    p Description: #{category.description}
+    div
+        h4 Items
+
+        dl
+            each item in category_items
+                dt
+                    a(href=item.url) #{item.name}
+                dd $#{item.price}

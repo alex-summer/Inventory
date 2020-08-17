@@ -58,7 +58,7 @@ router.get('/categories/:id/update', category_controller.category_update_get);
 router.post('/categories/:id/update', category_controller.category_update_post);
 
 //GET List All Categories
-router.get('/categories/listall', category_controller.category_list);
+router.get('/categories', category_controller.category_list);
 
 //GET List One Category
 router.get('/categories/:id', category_controller.category_detail);
