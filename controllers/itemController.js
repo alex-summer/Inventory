@@ -1,6 +1,6 @@
 var Item = require('../models/item');
 var Category = require('../models/category');
-const { body,valudationResult } = require('express-validator/check');
+const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
 var async = require('async')
@@ -55,7 +55,7 @@ exports.item_create_get = function(req, res){
         }
     }, function(err, results){
         if (err) {return next(err);}
-        res.render('item_form', {title: 'New Item', categories: results.categories})
+        res.render('item_form', {title: 'Create Item', categories: results.categories})
     });
 }
 
@@ -78,13 +78,13 @@ exports.item_create_post = [
     sanitizeBody('*').escape(),
 
     (req, res, next) => {
-        const errors = valudationResult(req);
+        const errors = validationResult(req);
 
 
         var item = new Item(
         {   name: req.body.name,
             price: req.body.price,
-            categories: req.body.categories
+            categories: req.body.category
         });
 
         if (!errors.isEmpty()) {
@@ -99,18 +99,18 @@ exports.item_create_post = [
                         results.categories[i].checked=true;
                     }
                 }
-                res.render('item_form', {title: 'New Item', categories: results.categories})
+                res.render('item_form', {title: 'Create Item', categories: results.categories})
             });
+            return;
         }
-
-        
-        
+        else{
+            item.save(function (err){
+                if(err) {return next(err);}
+                res.redirect(item.url)
+            });
+        }     
     }
-
-
-
-
-]
+];
 
 exports.item_delete_get = function(req,res){
     res.send('NOT IMPLEMENTED: Item Delete GET');

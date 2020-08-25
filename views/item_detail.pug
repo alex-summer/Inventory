@@ -2,6 +2,7 @@ extends layout
 
 block content
     h1 Name: #{item.name}
+    p Price: #{item.price}
     p Categories:&nbsp;
         each val, index in item.categories
             a(href=val.url) #{val.name}
